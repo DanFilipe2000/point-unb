@@ -2,14 +2,14 @@ const Noh = require("./noh.js");
 
 // O comportamento da lista será de fila
 
-class DoubleLinkedList {
+class ListaDuplamenteEncadeada {
     constructor() {
         this.cabeeca = null;
         this.cauda = null;
     }
 
     insert_start() {
-        
+
     }
 }
 
