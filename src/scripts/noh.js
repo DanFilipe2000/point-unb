@@ -1,7 +1,7 @@
 class Noh {
     constructor(valor) {
         this.valor = valor;
-        this.proximo = null;
+        this.anterior = null;
         this.proximo = null;
     }
 }
