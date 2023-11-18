@@ -3,9 +3,9 @@ class Noh {
         this.valor = valor;
         this.anterior = null;
         this.proximo = null;
-    }
-}
+    };
+};
 
 module.exports = {
     Noh,
-}
+};
