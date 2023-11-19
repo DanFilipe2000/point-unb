@@ -52,6 +52,62 @@ class ListaDuplamenteEncadeada {
         atual.proximo = novo_no;
     };
 
+    inserir_final(valor) {
+        const novo_no = new Noh(valor);
+
+        if (!this.cabeca) {
+            this.cabeca = novo_no;
+            this.cauda = novo_no;
+            return
+        }
+
+        this.cauda.proximo = novo_no;
+        novo_no.anterior = this.cauda;
+        this.cauda = novo_no;
+    };
+
+    deletar_inicio() {
+        if (!this.cabeca) {
+            return;
+        };
+
+        if (this.cabeca.proximo) {
+            this.cabeca.proximo.anterior = null;
+        } else {
+            this.cauda = null;
+        }
+
+        this.cabeca = this.cabeca.proximo;
+    };
+
+
+    deletar_meio(posicao) {
+        if (posicao == 0) {
+            this.deletar_inicio();
+            return;
+        };
+
+        let atual = this.cabeca;
+
+        for (let i = 0; posicao; i++) {
+            if (atual == null) {
+                throw new Error("Posição Inválida");
+            };
+
+            atual = atual.proximo;
+        };
+
+        if (atual.anterior) {
+            atual.anterior.proximo = atual.proximo;
+        };
+
+        if (atual.proximo) {
+            atual.proximo.anterior = atual.anterior;
+        } else {
+            this.cauda = atual.anterior;
+        };
+    };
+
     deletar_final() {
         if (!this.cabeca) {
             return;
@@ -66,6 +122,20 @@ class ListaDuplamenteEncadeada {
 
         this.cauda.anterior.proximo = null;
         this.cauda = this.cauda.anterior;
+    };
+
+    busca(valor) {
+        let atual = this.cabeca;
+
+        while(atual) {
+            if (atual.valor == valor) {
+                return true;
+            }
+
+            atual = atual.proximo;
+        }
+
+        return false;
     };
 
     travessia() {
