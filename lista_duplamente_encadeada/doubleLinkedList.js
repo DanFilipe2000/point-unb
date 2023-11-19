@@ -1,15 +1,15 @@
 const { Noh } = require("./noh.js");
 
 // O comportamento da lista será de fila
+// Classe implementada baseada na implementação da professora Geovanna - Turma 7 - 
 
 class ListaDuplamenteEncadeada {
     constructor() {
         this.cabeca = null;
         this.cauda = null;
-        this.lista = [];
     }
 
-    inserir_inicio(valor) {
+    inserir_inicio = (valor) => {
         const novo_no = new Noh(valor);
 
         novo_no.proximo = this.cabeca;
@@ -23,7 +23,7 @@ class ListaDuplamenteEncadeada {
         this.cabeca = novo_no;
     };
 
-    inserir_meio(posicao, valor) {
+    inserir_meio = (posicao, valor) => {
         if (posicao == 0) {
             this.inserir_inicio(valor);
             return;
@@ -52,7 +52,7 @@ class ListaDuplamenteEncadeada {
         atual.proximo = novo_no;
     };
 
-    inserir_final(valor) {
+    inserir_final = (valor) => {
         const novo_no = new Noh(valor);
 
         if (!this.cabeca) {
@@ -66,7 +66,11 @@ class ListaDuplamenteEncadeada {
         this.cauda = novo_no;
     };
 
-    deletar_inicio() {
+    ordenar_lista = (sentido) => {
+        // Ordenação feita com bubblesort
+    };
+
+    deletar_inicio = () => {
         if (!this.cabeca) {
             return;
         };
@@ -81,7 +85,7 @@ class ListaDuplamenteEncadeada {
     };
 
 
-    deletar_meio(posicao) {
+    deletar_meio = (posicao) => {
         if (posicao == 0) {
             this.deletar_inicio();
             return;
@@ -108,7 +112,7 @@ class ListaDuplamenteEncadeada {
         };
     };
 
-    deletar_final() {
+    deletar_final = () => {
         if (!this.cabeca) {
             return;
         };
@@ -124,7 +128,7 @@ class ListaDuplamenteEncadeada {
         this.cauda = this.cauda.anterior;
     };
 
-    busca(valor) {
+    busca = (valor) => {
         let atual = this.cabeca;
 
         while(atual) {
@@ -138,7 +142,7 @@ class ListaDuplamenteEncadeada {
         return false;
     };
 
-    travessia() {
+    travessia = () => {
         let atual = this.cabeca;
         while (atual) {
             console.log(atual);
