@@ -6,76 +6,87 @@ class ListaDuplamenteEncadeada {
     constructor() {
         this.cabeca = null;
         this.cauda = null;
-        this.lista = [];
+        this.tamanho = 0;
     }
 
-    inserir_inicio(valor) {
-        const novo_no = new Noh(valor);
+    inserir_final (valor) {
+        const novo_noh = new Noh(valor)
+ 
+        if (!this.cabeca) {
+            this.cabeca = novo_noh
+            this.cauda = novo_noh
+        } else {
+            novo_noh.anterior = this.cauda;
+            this.cauda.proximo = novo_noh;
+            this.cauda = novo_noh;
+        }
 
-        novo_no.proximo = this.cabeca;
+        this.tamanho++
+    }
+
+    remover_inicio () {
+        if (!this.cabeca) {
+            throw new Error("A lista está vazia, não é possível remover.");
+        }
+
+        const removido = this.cabeca.valor;
+        this.cabeca = this.cabeca.proximo;
 
         if (this.cabeca) {
-            this.cabeca.anterior = novo_no;
+            this.cabeca.anterior = null;
         } else {
-            this.cauda = novo_no;
-        };
+            this.cauda = null;
+        }
 
-        this.cabeca = novo_no;
-    };
+        this.tamanho--;
 
-    inserir_meio(posicao, valor) {
-        if (posicao == 0) {
-            this.inserir_inicio(valor);
-            return;
-        };
+        return removido;
+    }
 
-        const novo_no = new Noh(valor);
+    ordena_por_rating () {
+        let troca;
+
         let atual = this.cabeca;
 
-        for (let i = 0; posicao - 1; i++) {
-            if (atual == null) {
-                throw new Error("Posição inválida");
-            };
+        for (let i = 0; i < this.tamanho - 1; i++) {
+            if (atual.valor.rating > atual.proximo.valor.rating) {
+                const temp = atual.valor;
+                atual.valor = atual.proximo.valor;
+                atual.proximo.valor = temp;
+
+                troca = true;
+            }
 
             atual = atual.proximo;
-        };
+        }
 
-        novo_no.proximo = atual.proximo;
-        novo_no.anterior = atual;
+        if (!troca) {
+            return "Lista ordenada"
+        }
+    }
 
-        if (atual.proximo) {
-            atual.proximo.anterior = novo_no;
-        } else {
-            this.cauda = novo_no;
-        };
-
-        atual.proximo = novo_no;
-    };
-
-    deletar_final() {
-        if (!this.cabeca) {
-            return;
-        };
-
-        if (!this.cabeca.proximo) {
-            self.cabeca = null;
-            self.cauda = null;
-
-            return;
-        };
-
-        this.cauda.anterior.proximo = null;
-        this.cauda = this.cauda.anterior;
-    };
-
-    travessia() {
+    travessia () {
         let atual = this.cabeca;
         while (atual) {
-            console.log(atual);
+            console.log(atual.valor);
             atual = atual.proximo;
-        };
-    };
+        }
+    }
 };
+
+const lista = new ListaDuplamenteEncadeada();
+
+lista.inserir_final({ rating: 3.5 });
+lista.inserir_final({ rating: 1.2 });
+lista.inserir_final({ rating: 2.8 });
+
+console.log("Antes de ordenar:");
+lista.travessia();
+
+lista.ordena_por_rating();
+
+console.log("Depois de ordenar por rating:");
+lista.travessia();
 
 module.exports = {
     ListaDuplamenteEncadeada,
