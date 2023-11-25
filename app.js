@@ -10,12 +10,14 @@ app.set('view engine', 'ejs');
 
 app.set('views', './views');
 
-app.get('/cadastrar-lugar', (_req, res) => {
-    res.render('cadastrarLugar');
+const { lugarForm, cadastraLugar } = require("");
+
+app.get('/cadastrar-lugar', (req, res) => {
+    lugarForm(req, res);
 });
 
-app.post('/', (_req, res) => {
-    res.send('Bem-vindo ao meu aplicativo Node.js!');
+app.post('/cadastrar-lugar', (req, res) => {
+    cadastraLugar(req, res);
 });
 
 app.listen(porta, () => {
