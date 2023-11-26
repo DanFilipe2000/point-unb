@@ -7,6 +7,7 @@ class ListaDuplamenteEncadeada {
         this.cabeca = null;
         this.cauda = null;
         this.tamanho = 0;
+        this.lista = []
     }
 
     inserir_final (valor) {
@@ -61,12 +62,24 @@ class ListaDuplamenteEncadeada {
         }
 
         if (!troca) {
-            return "Lista ordenada"
+            return "A lista já está ordenada"
         }
+    }
+
+    retorna_tudo () {
+        let atual = this.cabeca;
+
+        while (atual) {
+            this.lista.append(atual.valor);
+            atual = atual.proximo;
+        }
+
+        return this.lista;
     }
 
     travessia () {
         let atual = this.cabeca;
+
         while (atual) {
             console.log(atual.valor);
             atual = atual.proximo;

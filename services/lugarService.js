@@ -1,28 +1,28 @@
 const { ListaDuplamenteEncadeada } = require("../scripts/doubleLinkedList.js");
-const fs = require('fs');
-const path = require('path');
 
-const userTable = "../database/tabelas/user.csv";
+const userTable = "../database/tabelas/local.csv";
 
-const lista = new ListaDuplamenteEncadeada();
+const listaLocais = new ListaDuplamenteEncadeada();
 
 const cadastraLugar = (body, file) => {
-    const new_body = body;
+    const new_body = {body};
 
     if (file) {
-        const path = path.join(__dirname, '..', 'public/images', file.filename);
+        const fotoPath = file.path;
 
-        new_body['foto'] = path;
-    }
+        new_body["foto"] = fotoPath;
+    };
 
-    lista.inserir_final(new_body);
+    listaLocais.inserir_final(new_body);
 
-    lista.travessia();
+    listaLocais.travessia();
+
+    listaLocais.ordena_por_nota();
 
     return new_body;
 };
 
 module.exports = {
-    lista,
+    listaLocais,
     cadastraLugar,
 };
