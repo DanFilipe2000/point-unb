@@ -6,14 +6,14 @@ const lugarForm = (_req, res) => {
 
 const cadastraLugar = (req, res) => {
     try {
-        const lugar = lugarService.cadastraLugar(req.body);
+        const lugar = lugarService.cadastraLugar(req.body, req.file);
         res.status(201).json(lugar);
     } catch (error) {
-        res.status(400).send(error);
+        res.status(400).json(error);
     }
 }
 
 module.exports = {
     lugarForm,
     cadastraLugar
-}
+};

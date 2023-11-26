@@ -43,13 +43,13 @@ class ListaDuplamenteEncadeada {
         return removido;
     }
 
-    ordena_por_rating () {
+    ordena_por_nota () {
         let troca;
 
         let atual = this.cabeca;
 
         for (let i = 0; i < this.tamanho - 1; i++) {
-            if (atual.valor.rating > atual.proximo.valor.rating) {
+            if (atual.valor.nota > atual.proximo.valor.nota) {
                 const temp = atual.valor;
                 atual.valor = atual.proximo.valor;
                 atual.proximo.valor = temp;
@@ -73,20 +73,6 @@ class ListaDuplamenteEncadeada {
         }
     }
 };
-
-const lista = new ListaDuplamenteEncadeada();
-
-lista.inserir_final({ rating: 3.5 });
-lista.inserir_final({ rating: 1.2 });
-lista.inserir_final({ rating: 2.8 });
-
-console.log("Antes de ordenar:");
-lista.travessia();
-
-lista.ordena_por_rating();
-
-console.log("Depois de ordenar por rating:");
-lista.travessia();
 
 module.exports = {
     ListaDuplamenteEncadeada,
