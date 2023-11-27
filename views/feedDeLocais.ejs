@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Feed de Imagens</title>
+    <style>
+    </style>
+</head>
+<body>
+    <div class="feed-container">
+        <% dados.forEach(function(item) { %>
+            <div class="image-post">
+                <h1><%= item.nome %></h1>
+                <img src="<%= '../' + item.foto %>" alt="Descrição da imagem">
+                <p>Nota: <%= item.nota %></p>
+                <p>Descrição: <%= item.descricao %></p>
+            </div>
+        <% }); %>
+    </div>
+</body>
+</html>

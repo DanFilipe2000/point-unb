@@ -1,19 +1,34 @@
-const Papa = require('papaparse');
+const fs = require("fs");
 
-const inserirCSV = (csvPath, dado) => {
-    Papa.parse(csvPath, {
-        header: true,
-        dynamicTyping: true,
-        complete: function(results) {
-            results.data.push(dado);
+const recuperarDados = (path) => {
+    const dados = [];
+    const fileBuffer = fs.readFileSync(path, "utf-8").split("\n");
 
-            const novoCSV = Para.unparse(results.data, { header: true });
-
-            console.log(novoCSV);
+    fileBuffer.forEach((element) => {
+        if (element !== '') {
+            dados.push(JSON.parse(element));
         }
     });
+
+    return dados;
+};
+
+const inserirDado = (path, dados) => {
+    let contentString = '';
+
+    dados.forEach((element) => {
+        contentString = contentString + `${JSON.stringify(element)}\n`
+    });
+
+    fs.writeFileSync(path, contentString);
+};
+
+const removerDado = (path, dado) => {
+    const dados = recuperarDados(path);
 };
 
 module.exports = {
-    inserirCSV,
+    inserirDado,
+    recuperarDados,
+    removerDado,
 };

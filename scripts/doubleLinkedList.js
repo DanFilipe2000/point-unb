@@ -7,7 +7,6 @@ class ListaDuplamenteEncadeada {
         this.cabeca = null;
         this.cauda = null;
         this.tamanho = 0;
-        this.lista = []
     }
 
     inserir_final (valor) {
@@ -50,7 +49,7 @@ class ListaDuplamenteEncadeada {
         let atual = this.cabeca;
 
         for (let i = 0; i < this.tamanho - 1; i++) {
-            if (atual.valor.nota > atual.proximo.valor.nota) {
+            if (parseInt(atual.valor.nota) > parseInt(atual.proximo.valor.nota)) {
                 const temp = atual.valor;
                 atual.valor = atual.proximo.valor;
                 atual.proximo.valor = temp;
@@ -61,20 +60,27 @@ class ListaDuplamenteEncadeada {
             atual = atual.proximo;
         }
 
-        if (!troca) {
-            return "A lista já está ordenada"
+        if (troca) {
+            this.ordena_por_nota();
+        } else {
+            console.log("A lista já está ordenada");
         }
     }
 
     retorna_tudo () {
+        const result = [];
         let atual = this.cabeca;
 
         while (atual) {
-            this.lista.append(atual.valor);
+            result.push(atual.valor);
             atual = atual.proximo;
         }
 
-        return this.lista;
+        return result;
+    }
+
+    recuperar_tamanho () {
+        return this.tamanho;
     }
 
     travessia () {
