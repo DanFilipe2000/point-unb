@@ -6,7 +6,7 @@ const listaLocais = new ListaDuplamenteEncadeada();
 
 const localCSVPath = "database/tabelas/local.csv";
 
-const popularLista = () => {
+const popularListaLocais = () => {
     const dados = recuperarDados(localCSVPath);
 
     dados.forEach((element) => {
@@ -46,5 +46,5 @@ module.exports = {
     listaLocais,
     cadastraLugar,
     recuperarLugares,
-    popularLista,
+    popularListaLocais,
 };

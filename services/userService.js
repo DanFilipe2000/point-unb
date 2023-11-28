@@ -2,49 +2,43 @@ const { ListaDuplamenteEncadeada } = require("../scripts/doubleLinkedList.js");
 const { recuperarDados, inserirDado } = require("../auxs/processCSV.js");
 const criarIdUnico = require("../auxs/createUniqueId.js");
 
-const listaLocais = new ListaDuplamenteEncadeada();
+const listaUsers = new ListaDuplamenteEncadeada();
 
-const localCSVPath = "database/tabelas/user.csv";
+const userCSVPath = "database/tabelas/user.csv";
 
-const popularLista = () => {
-    const dados = recuperarDados(localCSVPath);
+const popularListaUser = () => {
+    const dados = recuperarDados(userCSVPath);
 
     dados.forEach((element) => {
-        listaLocais.inserir_final(element);
+        listaUsers.inserir_final(element);
     });
 };
 
-const recuperarLugares = () => {
-    return listaLocais.retorna_tudo();
-};
-
-const cadastraLugar = (body, file) => {
+const create = (body) => {
     const new_body = body;
 
-    if (file) {
-        const fotoPath = file.path;
+    let users = listaUsers.retorna_tudo();
 
-        new_body["foto"] = fotoPath;
-    };
+    console.log(users);
+
+    users.forEach((element) => {
+        if (element.email == body.email) {
+            throw new Error("Esse email já foi cadastrado na plataforma!");
+        };
+    });
 
     new_body["id"] = criarIdUnico();
 
-    listaLocais.inserir_final(new_body);
+    listaUsers.inserir_final(new_body);
 
-    listaLocais.travessia();
+    users = listaUsers.retorna_tudo();
 
-    listaLocais.ordena_por_nota();
+    inserirDado(userCSVPath, users);
 
-    const dados_para_cadastrar = listaLocais.retorna_tudo();
-
-    inserirDado(localCSVPath, dados_para_cadastrar);
-
-    return new_body;
+    return body;
 };
 
 module.exports = {
-    listaLocais,
-    cadastraLugar,
-    recuperarLugares,
-    popularLista,
+    create,
+    popularListaUser
 };
