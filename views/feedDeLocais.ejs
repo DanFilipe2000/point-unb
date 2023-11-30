@@ -26,13 +26,20 @@
             LOGO
         </div>
         <div>
-            <button>Login</button>
-            <button>Registro</button>
+            <% if (typeof user !== 'undefined' && user) { %>
+                <p> <%=user.name%> </p>
+                <a href="/cadastrar-lugar">Criar Post</a>
+                <a href="/perfil">Perfil</a>
+                <a href="/sair">Sair</a>
+            <% } else { %>
+                <a href="/">Login</a>
+                <a href="/register">Registro</a>
+            <% } %>
         </div>
     </header>
     <div class="feed-container">
-        <% dados.forEach(function(item) { %>
-            <div class="image-post">
+        <% lugares.forEach(function(item) { %>
+            <div class="post">
                 <h1><%= item.nome %></h1>
                 <img src="<%= '../' + item.foto %>" alt="Descrição da imagem">
                 <p>Nota: <%= item.nota %></p>

@@ -4,15 +4,26 @@ const lugarForm = (_req, res) => {
     res.status(200).render("cadastrarLugar");
 }
 
-const feedLugares = (_req, res) => {
+const feedLugares = (req, res) => {
     const dados = lugarService.recuperarLugares();
 
-    res.status(200).render("feedDeLocais", { dados });
+    if (req.session.user) {
+        const data = {
+            lugares: dados,
+            user: req.session.user
+        };
+        res.status(200).render("feedDeLocais", data);
+    } else {
+        const data = {
+            lugares: dados,
+        };
+        res.status(200).render("feedDeLocais", data);
+    }
 }
 
 const cadastraLugar = (req, res) => {
     try {
-        const lugar = lugarService.cadastraLugar(req.body, req.file);
+        lugarService.cadastraLugar(req.body, req.file);
         res.redirect('/feed');
     } catch (error) {
         res.status(400).json(error);

@@ -6,6 +6,9 @@
 <body style="text-align:center;">
     <div class="login-container">
         <h2>Login</h2>
+        <% if (typeof error !== 'undefined' && error) { %>
+            <span><%= error.message %></span>
+        <% } %>
         <form action="/login" method="post">
             <label for="username">Email:</label>
             <input type="text" id="username" name="email" required>

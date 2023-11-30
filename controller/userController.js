@@ -17,8 +17,21 @@ const createUser = (req, res) => {
     }
 };
 
+const login = (req, res) => {
+    try {
+        const user = userService.getUser(req.body);
+        
+        req.session.user = user;
+
+        res.redirect("/feed");
+    } catch (error) {
+        res.render("tela_login", { error });
+    }
+}
+
 module.exports = {
     loginForm,
     registerForm,
     createUser,
+    login,
 };

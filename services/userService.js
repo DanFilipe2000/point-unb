@@ -38,7 +38,28 @@ const create = (body) => {
     return body;
 };
 
+const getUser = (body) => {
+    const { email, password } = body;
+
+    let users = listaUsers.retorna_tudo();
+
+    let user = '';
+
+    users.forEach((element) => {
+        if (element.email == email && element.password == password) {
+            user = element;
+        }
+    });
+
+    if (user) {
+        return user;
+    } else {
+        throw new Error("Email/Senha incorretos ou usuário não existe.")
+    };
+}
+
 module.exports = {
     create,
-    popularListaUser
+    popularListaUser,
+    getUser,
 };
