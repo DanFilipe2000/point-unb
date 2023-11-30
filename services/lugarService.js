@@ -18,7 +18,7 @@ const recuperarLugares = () => {
     return listaLocais.retorna_tudo();
 };
 
-const cadastraLugar = (body, file) => {
+const cadastraLugar = (body, file, user) => {
     const new_body = body;
 
     if (file) {
@@ -28,6 +28,7 @@ const cadastraLugar = (body, file) => {
     };
 
     new_body["id"] = criarIdUnico();
+    new_body["user_id"] = user.id;
 
     listaLocais.inserir_final(new_body);
 

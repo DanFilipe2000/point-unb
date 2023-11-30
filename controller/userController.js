@@ -10,10 +10,11 @@ const registerForm = (_req, res) => {
 
 const createUser = (req, res) => {
     try {
-        userService.create(req.body);
+        const user = userService.create(req.body);
+        req.session.user = user 
         res.redirect("/feed");
     } catch (error) {
-        res.status(401).json({ error: error.message });
+        res.render("tela_registro", { error: {message:error.message} });
     }
 };
 
@@ -27,11 +28,18 @@ const login = (req, res) => {
     } catch (error) {
         res.render("tela_login", { error });
     }
-}
+};
+
+const sair = (req, res) => {
+    req.session.user = "";
+    res.redirect("/feed");
+};
 
 module.exports = {
     loginForm,
     registerForm,
     createUser,
     login,
+    sair,
+    
 };
