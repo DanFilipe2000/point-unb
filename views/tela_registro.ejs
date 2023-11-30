@@ -6,6 +6,9 @@
 <body style="text-align:center;">
     <div class="register-container">
         <h2>Registrar</h2>
+        <% if (typeof error !== 'undefined' && error) { %>
+            <span><%= error.message %></span>
+        <% } %>
         <form action="/register" method="post">
             <label for="username">Nome:</label>
             <input type="text" id="username" name="name">
@@ -16,9 +19,9 @@
             <button type="submit">Registrar</button>
         </form>
         <span>
-            <a href="tela_login.html">Login</a></span>-
+            <a href="/">Login</a></span>-
             <span>
-            <a href="tela_feed.html">Feed</a></span>-
+            <a href="/feed">Feed</a></span>-
         <span>
     </div>
 </body>

@@ -25,7 +25,7 @@ app.set('view engine', 'ejs');
 app.set('views', './views');
 
 const { lugarForm, cadastraLugar, feedLugares } = require("./controller/lugarController");
-const { loginForm, registerForm, createUser, login } = require("./controller/userController.js");
+const { loginForm, registerForm, createUser, login, sair } = require("./controller/userController.js");
 
 const { popularListaLocais } = require("./services/lugarService.js");
 const { popularListaUser } = require("./services/userService.js");
@@ -40,6 +40,10 @@ app.get('/cadastrar-lugar', (req, res) => {
 
 app.get('/feed', (req, res) => {
     feedLugares(req, res);
+});
+
+app.get("/sair", (req, res) => {
+    sair(req, res)
 });
 
 app.post('/cadastrar-lugar', upload.single("foto"), (req, res) => {
