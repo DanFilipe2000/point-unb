@@ -22,6 +22,12 @@ class ListaDuplamenteEncadeada {
         }
 
         this.tamanho++
+
+        this.ordena_por_nota();
+    }
+
+    busca_binaria (valor) {
+        
     }
 
     remover_inicio () {

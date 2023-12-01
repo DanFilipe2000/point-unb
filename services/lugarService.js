@@ -32,15 +32,15 @@ const cadastraLugar = (body, file, user) => {
 
     listaLocais.inserir_final(new_body);
 
-    listaLocais.travessia();
-
-    listaLocais.ordena_por_nota();
-
     const dados_para_cadastrar = listaLocais.retorna_tudo();
 
     inserirDado(localCSVPath, dados_para_cadastrar);
 
     return new_body;
+};
+
+const removerLugar = (lugar) => {
+    
 };
 
 module.exports = {
