@@ -24,8 +24,8 @@ app.set('view engine', 'ejs');
 
 app.set('views', './views');
 
-const { lugarForm, cadastraLugar, feedLugares } = require("./controller/lugarController");
-const { loginForm, registerForm, createUser, login, sair } = require("./controller/userController.js");
+const { lugarForm, cadastraLugar, feedLugares, feedLugaresFiltrados, apagarLugar } = require("./controller/lugarController");
+const { loginForm, registerForm, createUser, login, perfil, sair } = require("./controller/userController.js");
 
 const { popularListaLocais } = require("./services/lugarService.js");
 const { popularListaUser } = require("./services/userService.js");
@@ -42,8 +42,16 @@ app.get('/feed', (req, res) => {
     feedLugares(req, res);
 });
 
+app.post('/filter-feed', (req, res) => {
+    feedLugaresFiltrados(req, res);
+});
+
 app.get("/sair", (req, res) => {
     sair(req, res)
+});
+
+app.get('/perfil', (req, res) => {
+    perfil(req, res);
 });
 
 app.post('/cadastrar-lugar', upload.single("foto"), (req, res) => {
@@ -56,6 +64,10 @@ app.post('/register', (req, res) => {
 
 app.post('/login', (req, res) => {
     login(req, res);
+});
+
+app.post("/apagar-lugar/:id", (req, res) => {
+    apagarLugar(req, res);
 });
 
 app.listen(porta, () => {

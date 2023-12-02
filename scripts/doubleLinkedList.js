@@ -26,10 +26,6 @@ class ListaDuplamenteEncadeada {
         this.ordena_por_nota();
     }
 
-    busca_binaria (valor) {
-        
-    }
-
     remover_inicio () {
         if (!this.cabeca) {
             throw new Error("A lista está vazia, não é possível remover.");
@@ -73,6 +69,73 @@ class ListaDuplamenteEncadeada {
         }
     }
 
+    moverElementoParaInicioPorId(id) {
+        let atual = this.cabeca;
+
+        while (atual) {
+            if (atual.valor.id === id) {
+                if (atual.anterior) {
+                    atual.anterior.proximo = atual.proximo;
+                } else {
+                    this.cabeca = atual.proximo;
+                }
+
+                if (atual.proximo) {
+                    atual.proximo.anterior = atual.anterior;
+                } else {
+                    this.cauda = atual.anterior;
+                }
+
+                atual.anterior = null;
+                atual.proximo = this.cabeca;
+                this.cabeca.anterior = atual;
+                this.cabeca = atual;
+
+                return;
+            }
+
+            atual = atual.proximo;
+        }
+
+        throw new Error(`Elemento com ID ${id} não encontrado na lista.`);
+    }
+
+    remove_pelo_id (id) {
+        this.moverElementoParaInicioPorId(id);
+        const removido = this.remover_inicio();
+
+        return removido;
+    }
+
+    busca_binaria(nota) {
+        const resultados = [];
+        const lista = this.retorna_tudo();
+    
+        this.busca_binaria_recursiva(lista, parseInt(nota), resultados);
+    
+        return resultados;
+    }
+    
+    busca_binaria_recursiva(lista, nota, resultados) {
+        if (lista.length === 0) {
+            return;
+        }
+    
+        const meio = Math.floor(lista.length / 2);
+        const notaMeio = parseInt(lista[meio].nota);
+    
+        if (notaMeio === nota) {
+            resultados.push(lista[meio]);
+    
+            this.busca_binaria_recursiva(lista.slice(0, meio), nota, resultados);
+            this.busca_binaria_recursiva(lista.slice(meio + 1), nota, resultados);
+        } else if (notaMeio > nota) {
+            this.busca_binaria_recursiva(lista.slice(0, meio), nota, resultados);
+        } else {
+            this.busca_binaria_recursiva(lista.slice(meio + 1), nota, resultados);
+        }
+    }
+
     retorna_tudo () {
         const result = [];
         let atual = this.cabeca;
@@ -85,10 +148,6 @@ class ListaDuplamenteEncadeada {
         return result;
     }
 
-    recuperar_tamanho () {
-        return this.tamanho;
-    }
-
     travessia () {
         let atual = this.cabeca;
 
@@ -96,6 +155,10 @@ class ListaDuplamenteEncadeada {
             console.log(atual.valor);
             atual = atual.proximo;
         }
+    }
+
+    recuperar_tamanho () {
+        return this.tamanho;
     }
 };
 

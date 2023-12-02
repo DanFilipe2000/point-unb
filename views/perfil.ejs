@@ -4,8 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil</title>
+    <style>
+        .header {
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            background-color: #003817;
+            width: 100%;
+            height: 60px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .feed-container {
+            margin-top: 70px;
+        }
+    </style>
 </head>
 <body>
-    
+    <header class="header">
+        <div>
+            LOGO
+        </div>
+        <div>
+            <% if (typeof user !== 'undefined' && user) { %>
+                <p> <%=user.name%> </p>
+                <a href="/cadastrar-lugar">Criar Post</a>
+                <a href="/feed">Feed</a>
+                <a href="/sair">Sair</a>
+            <% } %>
+        </div>
+    </header>
+    <h1><%= user.name %></h1>
+    <div>
+        <%= user %>
+    </div>
+    <div>
+        <h2>Minhas publicacões</h2>
+
+        <div>
+            <% lugares.forEach(function(item) { %>
+                <div class="post">
+                    <h1><%= item.nome %></h1>
+                    <img src="<%= '../' + item.foto %>" alt="Descrição da imagem">
+                    <p>Nota: <%= item.nota %></p>
+                    <p>Descrição: <%= item.descricao %></p>
+                </div>
+                <form action="/apagar-lugar/<%= item.id %>" method="post">
+                    <button type="submit">Remover Publicação</button>
+                </form>
+            <% }); %>
+        </div>
+    </div>
 </body>
 </html>
