@@ -3,45 +3,152 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil</title>
+    <title>Perfil - Point UnBersitário</title>
     <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #005BB5; /* Blue from UnB palette */
+            margin: 0;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            color: #ffffff; /* White text */
+        }
+
         .header {
             position: fixed;
             top: 0px;
             left: 0px;
-            background-color: #003817;
+            background-color: #003831;
             width: 100%;
-            height: 60px;
+            height: 70px;
             display: flex;
             justify-content: space-between;
+            align-items: center;
         }
 
-        .feed-container {
-            margin-top: 70px;
+        .header img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .header h1 {
+            color: #ffffff;
+            font-size: 20px;
+            margin: 0;
+        }
+
+        .links {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+        }
+
+        .links h3 {
+            font-size: 18px;
+            background-color: #187CB8; /* Darker blue from UnB palette */
+            border: none;
+            border-radius: 20px;
+            padding: 10px;
+            margin: 0;
+        }
+
+        a {
+            margin: 20px;
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .info-user {
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .info-user p {
+            font-size: 18px;
+            margin: 10px 0;
+            color: #ffffff;
+        }
+
+        h2 {
+            font-size: 24px;
+            color: #fff; /* Darker blue from UnB palette */
+            margin-top: 20px;
+        }
+
+        .post {
+            margin-top: 20px;
+            border-bottom: 1px solid #187CB8; /* Darker blue from UnB palette */
+            padding-bottom: 20px;
+        }
+
+        .post h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .post img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .post p {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        form {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        button {
+            background-color: #187CB8; /* Darker blue from UnB palette */
+            border: none;
+            border-radius: 20px;
+            padding: 15px;
+            margin-bottom: 30px;
+            width: 100%;
+            cursor: pointer;
+            color: #ffffff;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #135A88; /* Slightly darker blue for hover effect */
         }
     </style>
 </head>
 <body>
     <header class="header">
-        <div>
-            LOGO
-        </div>
-        <div>
+        <h1>Point UnBersitário</h1>
+        <div class="links">
             <% if (typeof user !== 'undefined' && user) { %>
-                <p> <%=user.name%> </p>
+                <h3> <%= user.name %> </h3>
                 <a href="/cadastrar-lugar">Criar Post</a>
                 <a href="/feed">Feed</a>
                 <a href="/sair">Sair</a>
             <% } %>
         </div>
     </header>
-    <h1><%= user.name %></h1>
-    <div>
-        <%= user %>
+    <div class="info-user">
+        <p>Seu nome: <%= user.name %></p>
+        <p>Seu email: <%= user.email %></p>
     </div>
     <div>
-        <h2>Minhas publicacões</h2>
-
+        <h2>Minhas publicações</h2>
         <div>
             <% lugares.forEach(function(item) { %>
                 <div class="post">
