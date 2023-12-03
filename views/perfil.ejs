@@ -3,128 +3,159 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil</title>
+    <title>Perfil - Point UnBersitário</title>
     <style>
-        p{
-            font-size: 26px;
-            color: antiquewhite;
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-        }
-
         body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        background-image: linear-gradient(45deg, rgb(12, 134, 65), rgb(0, 0, 0));
-
-    }
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #005BB5; /* Blue from UnB palette */
+            margin: 0;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            color: #ffffff; /* White text */
+        }
 
         .header {
             position: fixed;
             top: 0px;
             left: 0px;
-            background-color: #003817;
+            background-color: #003831;
             width: 100%;
             height: 70px;
             display: flex;
             justify-content: space-between;
+            align-items: center;
         }
 
-        .header h1{
-            color: rgb(200, 216, 96);
-            font-family: "arial";
+        .header img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .header h1 {
+            color: #ffffff;
+            font-size: 20px;
+            margin: 0;
+        }
+
+        .links {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+        }
+
+        .links h3 {
+            font-size: 18px;
+            background-color: #187CB8; /* Darker blue from UnB palette */
+            border: none;
+            border-radius: 20px;
+            padding: 10px;
+            margin: 0;
+        }
+
+        a {
+            margin: 20px;
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .info-user {
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .info-user p {
+            font-size: 18px;
+            margin: 10px 0;
+            color: #ffffff;
+        }
+
+        h2 {
+            font-size: 24px;
+            color: #fff; /* Darker blue from UnB palette */
+            margin-top: 20px;
+        }
+
+        .post {
+            margin-top: 20px;
+            border-bottom: 1px solid #187CB8; /* Darker blue from UnB palette */
+            padding-bottom: 20px;
+        }
+
+        .post h1 {
             font-size: 36px;
+            margin-bottom: 10px;
+            color: #ffffff;
         }
 
-        .links{
-            margin-right: 40px;
-            
+        .post img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 10px;
         }
-        .links h3{
-            font-size: 22px;
-            background-color: aqua;
+
+        .post p {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        form {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        button {
+            background-color: #187CB8; /* Darker blue from UnB palette */
             border: none;
             border-radius: 20px;
             padding: 15px;
             margin-bottom: 30px;
-        }
-        a{
-            margin-top: 20px ;
-            color: rgb(255, 255, 255);
-            border: none;
-            border-radius: 6px;
-            padding: 10px;
-            margin-bottom: 0px;
-            
-        }
-
-        .post h1{
-            color: aliceblue;
-            font-size: 46px;
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-        }
-
-        .post img{
-            max-width: 770px;
-        }
-
-        a:hover{
-            background-color: rgb(10, 87, 58);
-        }
-        
-        .objeto{
-            color :rgb(23, 73, 45)
-        }
-
-        hr{
             width: 100%;
-            padding: 1px;
-            background-color: aliceblue;
+            cursor: pointer;
+            color: #ffffff;
+            font-size: 16px;
         }
 
-        button{
-        background-color: rgb(2, 75, 75);
-        border: none;
-        border-radius: 20px;
-        padding: 15px;
-        margin-bottom: 30px;
-        width: 100%;
-    }
-    button:hover{
-        background-image: linear-gradient(45deg, rgb(12, 134, 65), rgb(250, 250, 8));
-    }
-
+        button:hover {
+            background-color: #135A88; /* Slightly darker blue for hover effect */
+        }
     </style>
 </head>
 <body>
     <header class="header">
-        <img src="https://live.staticflickr.com/65535/53371842705_3f9a06d625_m.jpg" alt="logo point unb">
         <h1>Point UnBersitário</h1>
-        <div>
+        <div class="links">
             <% if (typeof user !== 'undefined' && user) { %>
-                <h3> <%=user.name%> </h3>
+                <h3> <%= user.name %> </h3>
                 <a href="/cadastrar-lugar">Criar Post</a>
                 <a href="/feed">Feed</a>
                 <a href="/sair">Sair</a>
             <% } %>
         </div>
     </header>
-    <div class="objeto">
-        <%= user %>
+    <div class="info-user">
+        <p>Seu nome: <%= user.name %></p>
+        <p>Seu email: <%= user.email %></p>
     </div>
     <div>
-        <h2>Minhas publicacões</h2>
-
+        <h2>Minhas publicações</h2>
         <div>
             <% lugares.forEach(function(item) { %>
                 <div class="post">
-                    <hr>
                     <h1><%= item.nome %></h1>
                     <img src="<%= '../' + item.foto %>" alt="Descrição da imagem">
                     <p>Nota: <%= item.nota %></p>
                     <p>Descrição: <%= item.descricao %></p>
-                    </hr>
                 </div>
                 <form action="/apagar-lugar/<%= item.id %>" method="post">
                     <button type="submit">Remover Publicação</button>
