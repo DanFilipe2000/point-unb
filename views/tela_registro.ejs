@@ -3,25 +3,140 @@
 <head>
     <title>Registrar</title>
 </head>
-<body style="text-align:center;">
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Didot";
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-image: linear-gradient(45deg, rgb(12, 134, 65), rgb(8, 8, 8));
+
+    }
+
+    .header {
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            background-color: #003817;
+            width: 100%;
+            height: 70px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .header h1{
+            color: rgb(200, 216, 96);
+            font-family: "arial";
+            font-size: 36px;
+            margin-right: 41.9%;
+            margin-top: 15px;
+        }
+
+
+    .register-container {
+        width: 420px;
+        background: black;
+        color: #fff;
+        border-radius: 50px;
+        padding: 80px
+    }
+
+    .register-container h2 {
+        font-size: 36px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .register-container .input-box {
+        position: relative;
+        width: 100%;
+        height: 50px;
+        margin: 30px 0;
+    }
+
+    .input-box input {
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        border: none;
+        outline: none;
+        border: 2px solid rgba(255, 255, 255, .2);
+        border-radius: 40px;
+        font-size: 16px;
+        color: #fff;
+        padding: 20px 45px 20px 20px;
+    }
+
+    .input-box input::placeholder {
+        color: #fff;
+    }
+    
+    .input-box i {
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 20px;
+    }
+
+    button{
+        background-color: aqua;
+        border: none;
+        border-radius: 20px;
+        padding: 15px;
+        margin-bottom: 30px;
+        width: 100%;
+    }
+
+    button:hover{
+        background-image: linear-gradient(45deg, rgb(12, 134, 65), rgb(250, 250, 8));
+    }
+
+    a{
+        background-color: rgb(16, 2, 29);;
+    }
+
+    a:hover{
+        background-color: aqua;
+    }
+</style>
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<body>
+    <header class="header">
+        <img src="https://live.staticflickr.com/65535/53371842705_3f9a06d625_m.jpg" alt="logo point unb">
+        <h1>Point UnBersitário</h1>
+    </header>
     <div class="register-container">
         <h2>Registrar</h2>
         <% if (typeof error !== 'undefined' && error) { %>
             <span><%= error.message %></span>
         <% } %>
         <form action="/register" method="post">
-            <label for="username">Nome:</label>
-            <input type="text" id="username" name="name">
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email">
-            <label for="password">Senha:</label>
-            <input type="password" id="password" name="password">
+            <div class= "input-box">
+            <input type="text" placeholder="Seu Nome" name="Nome" required>
+            <i class='bx bxs-user' ></i>
+            </div>
+            <div class= "input-box">
+            <input type="email" placeholder="Seu email" name="Email" required>
+            <i class='bx bxs-envelope' ></i>
+            </div>
+            <div class="input-box">
+            <input type="password" placeholder="Sua Senha" name="Senha" required>
+            <i class='bx bx-lock' ></i>
+            </div>
             <button type="submit">Registrar</button>
         </form>
         <span>
-            <a href="/">Login</a></span>-
+            <p>Já tem uma conta? Faça <a href="/">Login</a></span></p>
             <span>
-            <a href="/feed">Feed</a></span>-
+            <p>Continuar para o <a href="/feed">Feed</a></span></p>
         <span>
     </div>
 </body>
