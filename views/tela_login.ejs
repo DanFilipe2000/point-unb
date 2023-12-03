@@ -93,12 +93,16 @@
 </style>
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 <body>
-   
+    <header class="header">
+        <img src="../uploads/public/Location search-bro.svg" alt="logo point unb">
+        <h1>Point UnBersitário</h1>
+        <h3>                                            </h3>
+    </header>
     <div class="wrapper">
         <form action="/login" method="post">
             <h1>Login</h1>
             <% if (typeof error !== 'undefined' && error) { %>
-                <span><%= error.message %></span>
+                <span style="color: red;"><%= error.message %></span>
             <% } %>
             <div class="input-box">
                 <input type="text" placeholder="Seu email" name="email" required>

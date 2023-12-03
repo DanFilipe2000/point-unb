@@ -81,6 +81,7 @@
     span {
         display: block;
         margin-top: 15px;
+        color: red;
     }
 
     span a {
@@ -105,16 +106,16 @@
         <% } %>
         <form action="/register" method="post">
             <div class= "input-box">
-            <input type="text" placeholder="Seu Nome" name="Nome" required>
-            <i class='bx bxs-user' ></i>
+                <input type="text" placeholder="Seu Nome" name="name" required>
+                <i class='bx bxs-user' ></i>
             </div>
             <div class= "input-box">
-            <input type="email" placeholder="Seu email" name="Email" required>
-            <i class='bx bxs-envelope' ></i>
+                <input type="email" placeholder="Seu email" name="email" required>
+                <i class='bx bxs-envelope' ></i>
             </div>
             <div class="input-box">
-            <input type="password" placeholder="Sua Senha" name="Senha" required>
-            <i class='bx bx-lock' ></i>
+                <input type="password" placeholder="Sua Senha" name="password" required>
+                <i class='bx bx-lock' ></i>
             </div>
             <button type="submit">Registrar</button>
         </form>

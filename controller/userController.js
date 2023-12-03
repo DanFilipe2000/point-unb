@@ -11,6 +11,7 @@ const registerForm = (_req, res) => {
 
 const createUser = (req, res) => {
     try {
+        console.log(req.body)
         const user = userService.create(req.body);
         req.session.user = user 
         res.redirect("/feed");

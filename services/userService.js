@@ -19,10 +19,9 @@ const create = (body) => {
 
     let users = listaUsers.retorna_tudo();
 
-    console.log(users);
-
     users.forEach((element) => {
         if (element.email == body.email) {
+            console.log(element.email, body.email)
             throw new Error("Esse email já foi cadastrado na plataforma!");
         };
     });

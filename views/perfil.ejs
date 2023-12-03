@@ -149,6 +149,9 @@
     </div>
     <div>
         <h2>Minhas publicações</h2>
+        <% if (lugares.length == 0 || !lugares) { %>
+            <p> Vocẽ ainda não tem publicações :( Faça uma agora mesmo =><a href="/cadastrar-lugar">Criar post</a></p>
+        <% } %>
         <div>
             <% lugares.forEach(function(item) { %>
                 <div class="post">
