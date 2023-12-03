@@ -82,6 +82,6 @@
 - "Sair", te deslogará da sua conta e te redirecionará para a tela de login novamente.
 ## Referências
 
-[Curso de Node.JS - Vitor Lima](https://www.youtube.com/watch?v=LLqq6FemMNQ&list=PLJ_KhUnlXUPtbtLwaxxUxHqvcNQndmI4B)
-[Lista Duplamente Encadeada - Thiago Jabur](https://www.youtube.com/watch?v=wqzUPt6DIwk)
+[Curso de Node.JS - Vitor Lima](https://www.youtube.com/watch?v=LLqq6FemMNQ&list=PLJ_KhUnlXUPtbtLwaxxUxHqvcNQndmI4B)<br>
+[Lista Duplamente Encadeada - Thiago Jabur](https://www.youtube.com/watch?v=wqzUPt6DIwk)<br>
 [Busca Binária - Halisson Paz](https://www.youtube.com/watch?v=EgLE5HwRy_M)
